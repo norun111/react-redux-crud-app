@@ -10,11 +10,12 @@ import './App.css';
 
 class App extends Component {
   render(){
-    return React.createElement(
-      "h1",
-      null,
-      "Hello, world!"
-    );
+    return(
+      <React.Fragment>
+        <label htmlFor="bar">bar</label>
+        <input type="text" className="bar" onChange={function(){console.log("I am clicked")}} />
+      </React.Fragment>
+    )
   }
 }
 
