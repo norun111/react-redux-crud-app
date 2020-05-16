@@ -2,28 +2,43 @@
 // import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { increment, decrement } from '../actions'
-
+import { readEvents } from '../actions'
+import _ from 'lodash'
 
 class EventsIndex extends Component{
   componentDidMount(){
-    console.log('hi!!');
     this.props.readEvents()
   }
 
-  render() {
-    const props = this.props
+  renderEvents(){
+    return _.map(this.props.events, event => (
+      <tr>
+        <td>{event.id}</td>
+        <td>{event.title}</td>
+        <td>{event.body}</td>
+      </tr>
+    ))
+  }
 
+  render() {
     return(
-    <React.Fragment>
-      <div>value: { props.value }</div>
-      <button onClick={ props.increment }>+1</button>
-      <button onClick={ props.decrement }>-1</button>
-    </React.Fragment>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {this.renderEvents()}
+        </tbody>
+      </table>
     )
   }
 }
-const mapStateToProps = state => ({ value: state.count.value })
+const mapStateToProps = state => ({ events: state.events })
 
 
 const mapDispatchToProps = ({ readEvents })
