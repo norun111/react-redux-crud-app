@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
-
-import { getEvent, deleteEvent, putEvent } from '../actions'
+import { Field, reduxForm } from 'redux-form';
+import { deleteEvent } from '../actions';
+// import { getEvent, deleteEvent, putEvent } from '../actions';
 
 class EventsShow extends Component{
   constructor(props){
@@ -24,7 +24,7 @@ class EventsShow extends Component{
 
   async onDeleteClick() {
     console.log(this.props.match);
-    const {id} = this.props.match.params.id
+    const id = this.props.match.params.id
     await this.props.deleteEvent(id)
     this.props.history.push('/')
   }
@@ -45,7 +45,7 @@ class EventsShow extends Component{
         <div>
           <input type='submit' value="Submit" disabled={ pristine || submitting } />
           <Link to="/">Cancel</Link>
-          <Link to="/" onClick={ this.onDeleteClick }>Delete</Link>
+          <Link to="/" onClick={this.onDeleteClick}>Delete</Link>
         </div>
       </form>
     )
