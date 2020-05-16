@@ -6,6 +6,10 @@ import { increment, decrement } from '../actions'
 
 
 class EventsIndex extends Component{
+  componentDidMount(){
+    console.log('hi!!');
+    this.props.readEvents()
+  }
 
   render() {
     const props = this.props
@@ -22,6 +26,6 @@ class EventsIndex extends Component{
 const mapStateToProps = state => ({ value: state.count.value })
 
 
-const mapDispatchToProps = ({ increment, decrement})
+const mapDispatchToProps = ({ readEvents })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsIndex)
